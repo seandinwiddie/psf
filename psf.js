@@ -61,7 +61,7 @@ const store = {
     ],
     legend: [
       "- [PSF]: The Personnel operating System reFactoring application.",
-      "- [Priorities]: A numeric value indicating the urgency or backlog status of a task."
+      "- [Priorities]: A numeric value indicating the urgency or backlog status of a task.",
       "- [Identifier]: The entity being tracked, such as a person, android, device, replicant, cyborg, etc.",
       "- [Aspect/Parameter/Attribute/Variable/Function/Method]: The specific characteristic or feature of the [Identifier] being tracked, e.g., operating system, software, thinking program, habit, etc.",
       "- [Units]: The markers used to measure the progress, e.g., distance markers, implementation stages, activation milestones, etc.",
@@ -139,7 +139,6 @@ const processInput = compose(
 // Start the program
 processInput();
 
-// Functions (utility functions...)
 
 // Replace placeholders and use the store to display instructions and utilities
 const displayInstructions = () => {
@@ -240,31 +239,19 @@ function promptNextAction() {
 }
 
 
-// Utility Functions (compose function, etc.)...
-// Functional Utilities (Examples)
+// Utility Functions /  Functional Utilities
 
-### `map` Function
-// English: For each value in the array, apply a function to transform it and create a new array.
-// Math: Given an array [x1, x2, x3, ...], map(f) returns [f(x1), f(x2), f(x3), ...].
-map(fn)(array) => transformedArray
+// Helper function for function composition
+function compose(...fns) {
+  return (initialArg) => {
+    let result = initialArg;
+    for (const fn of fns) {
+      result = fn(result);
+    }
+    return result;
+  };
+}
 
-### `zip` Function
-// English: Combine values from multiple arrays into pairs, triples, etc., preserving their order.
-// Math: Given arrays [a1, a2, a3, ...], [b1, b2, b3, ...], ... zip returns [[a1, b1, ...], [a2, b2, ...], ...].
-zip(arr1, arr2, arr3, ...) => combinedArray
-
-### `reduce` Function
-// English: Accumulate values from an array by successively applying a function, starting with an initial value.
-// Math: Given an array [x1, x2, x3, ...], reduce(f, initialValue) returns f(...f(f(initialValue, x1), x2), x3), ...).
-reduce(fn, initialValue)(array) => result
-
-### `concat` Function
-// English: Combine multiple arrays into a single array, preserving their order.
-// Math: Given arrays [a1, a2, a3, ...], [b1, b2, b3, ...], ... concat returns [a1, a2, a3, ..., b1, b2, b3, ...].
-concat(array1, array2) => concatenatedArray
-
-// Functional utilities
-const compose = (...fns) => x => fns.reduceRight((v, f) => f(v), x);
 const map = fn => arr => arr.map(fn);
 const filter = fn => arr => arr.filter(fn);
 const forEach = fn => arr => arr.forEach(fn);
@@ -312,12 +299,6 @@ class Component {
 }
 
 const ProvidedComponent = provideStore(new Component());
-
-// Helper function for function composition
-function compose(...fns) {
-  return (arg) => fns.reduce((composed, fn) => fn(composed), arg);
-}
-
 
 // Main function to run tests
 function runTests() {
