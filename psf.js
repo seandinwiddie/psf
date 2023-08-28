@@ -241,6 +241,68 @@ function promptNextAction() {
 
 
 // Utility Functions (compose function, etc.)...
+// Functional Utilities (Examples)
+
+### `map` Function
+// English: For each value in the array, apply a function to transform it and create a new array.
+// Math: Given an array [x1, x2, x3, ...], map(f) returns [f(x1), f(x2), f(x3), ...].
+map(fn)(array) => transformedArray
+
+### `zip` Function
+// English: Combine values from multiple arrays into pairs, triples, etc., preserving their order.
+// Math: Given arrays [a1, a2, a3, ...], [b1, b2, b3, ...], ... zip returns [[a1, b1, ...], [a2, b2, ...], ...].
+zip(arr1, arr2, arr3, ...) => combinedArray
+
+### `reduce` Function
+// English: Accumulate values from an array by successively applying a function, starting with an initial value.
+// Math: Given an array [x1, x2, x3, ...], reduce(f, initialValue) returns f(...f(f(initialValue, x1), x2), x3), ...).
+reduce(fn, initialValue)(array) => result
+
+### `concat` Function
+// English: Combine multiple arrays into a single array, preserving their order.
+// Math: Given arrays [a1, a2, a3, ...], [b1, b2, b3, ...], ... concat returns [a1, a2, a3, ..., b1, b2, b3, ...].
+concat(array1, array2) => concatenatedArray
+
+// Functional utilities
+const compose = (...fns) => x => fns.reduceRight((v, f) => f(v), x);
+const map = fn => arr => arr.map(fn);
+const filter = fn => arr => arr.filter(fn);
+const forEach = fn => arr => arr.forEach(fn);
+const reduce = (fn, initialValue) => arr => arr.reduce(fn, initialValue);
+
+
+// Test utility functions
+function testUtilityFunctions() {
+  // Test parseTextFromJSON function
+  const testArray = ['Test Line 1', 'Test Line 2'];
+  const parsedText = parseTextFromJSON(testArray);
+  console.log('Parsed Text:\n', parsedText);
+
+  // Test map function
+  const double = x => x * 2;
+  const testMapArray = [1, 2, 3, 4, 5];
+  const mappedArray = map(double)(testMapArray);
+  console.log('Mapped Array:', mappedArray);
+
+  // Test filter function
+  const isEven = x => x % 2 === 0;
+  const testFilterArray = [1, 2, 3, 4, 5];
+  const filteredArray = filter(isEven)(testFilterArray);
+  console.log('Filtered Array:', filteredArray);
+
+  // Test forEach function
+  const printValue = x => console.log('Value:', x);
+  const testForEachArray = [1, 2, 3, 4, 5];
+  forEach(printValue)(testForEachArray);
+
+  // Test reduce function
+  const sum = (accumulator, currentValue) => accumulator + currentValue;
+  const testReduceArray = [1, 2, 3, 4, 5];
+  const reducedValue = reduce(sum, 0)(testReduceArray);
+  console.log('Reduced Value:', reducedValue);
+
+}
+
 
 // Provider Example
 class Component {
@@ -255,3 +317,21 @@ const ProvidedComponent = provideStore(new Component());
 function compose(...fns) {
   return (arg) => fns.reduce((composed, fn) => fn(composed), arg);
 }
+
+
+// Main function to run tests
+function runTests() {
+  // Test utility functions
+  testUtilityFunctions();
+
+  // Test progress data handling
+  const testRating = 3;
+  const testPriority = 8;
+  updateProgressData({ rating: testRating, priority: testPriority });
+  console.log('Progress Data:', store.state.progressData);
+
+  // ... Add more tests for other functions if needed
+}
+
+// Run tests when the program starts
+runTests();
