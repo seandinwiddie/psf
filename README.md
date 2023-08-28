@@ -290,3 +290,5 @@ applied to a wide range of skills and subjects
 challenges conventional notions of how learning should take place and encourages learners to take ownership of their education
 
 with the right strategies, mindset, and determination, achievement of exceptional results in a relatively short period of time
+
+MAGICK tell read see ( "math" ) { outcomes } occur by[/through/in/on/etc] ritual practice of vision, etc
