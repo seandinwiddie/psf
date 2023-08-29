@@ -121,6 +121,9 @@ const store = {
   }
 };
 
+function updateProgressData({ rating, priority }) {
+  store.dispatch(store.actions.addProgressData(rating, priority));
+}
 
 // Utility Functions /  Functional Utilities
 
@@ -139,6 +142,31 @@ const map = fn => arr => arr.map(fn);
 const filter = fn => arr => arr.filter(fn);
 const forEach = fn => arr => arr.forEach(fn);
 const reduce = (fn, initialValue) => arr => arr.reduce(fn, initialValue);
+
+// Utility function to format progress ratings
+const formatProgressRating = rating => {
+  if (rating > 0) {
+    return `+${rating}`;
+  } else {
+    return `${rating}`;
+  }
+};
+
+// Utility function to transform progress ratings
+const transformProgressRatings = map(formatProgressRating);
+
+// Utility function to transform observation notes
+const transformNotes = map(note => `- ${note}`);
+
+// Utility function to check if two values are equal
+function isEqual(a, b) {
+  // Implement your own comparison logic here
+  return a === b;
+}
+
+const parseTextFromJSON = (jsonArray) => {
+  return jsonArray.join('\n');
+};
 
 // Utility Functions for BDD-style Testing
 
@@ -170,17 +198,6 @@ function expect(actualValue) {
     }
   };
 }
-
-// Utility function to check if two values are equal
-function isEqual(a, b) {
-  // Implement your own comparison logic here
-  return a === b;
-}
-
-const parseTextFromJSON = (jsonArray) => {
-  return jsonArray.join('\n');
-};
-
 
 // Test utility functions
 function testUtilityFunctions() {
@@ -263,10 +280,36 @@ describe("Initial Data Collection User Story", () => {
   });
 });
 
+// Test Data Entry User Story
+describe("Data Entry User Story", () => {
+  it("should create a new array with formatted progress ratings using the map function", () => {
+    // Given the PSF is running
 
-function updateProgressData({ rating, priority }) {
-  store.dispatch(store.actions.addProgressData(rating, priority));
-}
+    // When the user uses the map function to transform progress ratings
+    const testProgressRatings = [1, -3, 2, -1];
+    const formattedProgressRatings = transformProgressRatings(testProgressRatings);
+
+    // Then a new array with formatted progress ratings is created
+    const expectedFormattedProgressRatings = ["+1", "-3", "+2", "-1"]; // Update this with your computed values
+    expect(formattedProgressRatings).toEqual(expectedFormattedProgressRatings);
+
+    console.log("Test for formatted progress ratings using map function passed.");
+  });
+
+  it("should create a new array with observation notes using the map function", () => {
+    // Given the PSF is running
+
+    // When the user uses the map function to transform notes
+    const testObservationNotes = ["Noted", "Interesting", "No issues"];
+    const transformedNotes = transformNotes(testObservationNotes);
+
+    // Then a new array with observation notes is created
+    const expectedTransformedNotes = ["- Noted", "- Interesting", "- No issues"]; // Updated expected values
+    expect(transformedNotes).toEqual(expectedTransformedNotes);
+
+    console.log("Test for observation notes transformation using map function passed.");
+  });
+});
 
 // Main function to run tests
 function runTests() {
