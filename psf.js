@@ -257,6 +257,25 @@ const filter = fn => arr => arr.filter(fn);
 const forEach = fn => arr => arr.forEach(fn);
 const reduce = (fn, initialValue) => arr => arr.reduce(fn, initialValue);
 
+// Utility Functions for BDD-style Testing
+
+// Utility function for creating a 'describe' block
+function describe(description, tests) {
+  console.log(`\n${description}`);
+  tests();
+}
+
+// Utility function for creating an 'it' test case
+function it(description, testFn) {
+  try {
+    testFn();
+    console.log(`\t✓ ${description}`);
+  } catch (error) {
+    console.error(`\t✗ ${description}`);
+    console.error('\t  Error:', error.message);
+  }
+}
+
 
 // Test utility functions
 function testUtilityFunctions() {
