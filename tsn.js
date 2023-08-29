@@ -1,5 +1,6 @@
 const fs = require('fs');
 const readline = require('readline');
+const _ = require('lodash');
 
 // Store
 const store = {
@@ -158,6 +159,24 @@ function it(description, testFn) {
   }
 }
 
+function expect(actualValue) {
+  return {
+    toEqual(expectedValue) {
+      if (isEqual(actualValue, expectedValue)) {
+        console.log("✓ Test passed");
+      } else {
+        console.error(`✗ Test failed. Expected ${expectedValue}, but got ${actualValue}`);
+      }
+    }
+  };
+}
+
+// Utility function to check if two values are equal
+function isEqual(a, b) {
+  // Implement your own comparison logic here
+  return a === b;
+}
+
 const parseTextFromJSON = (jsonArray) => {
   return jsonArray.join('\n');
 };
@@ -223,8 +242,21 @@ describe("Initial Data Collection User Story", () => {
     // Simulate user input for rating and priority
     simulateUserInput(ratingInput, () => {
       simulateUserInput(priorityInput, () => {
-        // Then the user can optionally note any observations
-        // Add your assertions or validation here
+        // ...
+
+        const expectedProgressData = [{ rating: 3, priority: 8 }];
+        const actualProgressData = store.state.progressData.map(data => ({
+          rating: data.rating,
+          priority: data.priority
+        }));
+
+        // Use _.isEqual for deep object comparison
+        if (_.isEqual(actualProgressData, expectedProgressData)) {
+          console.log("✓ Test passed");
+        } else {
+          console.error(`✗ Test failed. Expected ${JSON.stringify(expectedProgressData)}, but got ${JSON.stringify(actualProgressData)}`);
+        }
+
         console.log("User input simulation complete.");
       });
     });
