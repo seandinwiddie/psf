@@ -21,6 +21,63 @@ Personnel subconscious Operating System (oS) reFactoring is a command-line appli
 - The application will display instructions, utilities, and a chart showing progress.
 - The `psf.js` script includes comments explaining different sections and functionalities.
 
+## User Stories BDD
+
+The user stories portrayed in the `psf.js` file with BDD scenario syntax ("Given-When-Then") are as follows:
+
+1. Initial Data Collection:
+   - Given the PSF is running,
+     When the user observes interactions of PSF with their operating system functionalities,
+     Then the user can assign a progress rating between -5 and 5 based on observed alignment.
+   - Given the PSF is running,
+     When the user assigns a progress rating and priority,
+     Then the user can optionally note any observations.
+   
+2. Data Entry:
+   - Given the PSF is running,
+     When the user uses the `map` function to transform progress ratings,
+     Then a new array with formatted progress ratings is created.
+   - Given the PSF is running,
+     When the user uses the `map` function to transform notes,
+     Then a new array with observation notes is created.
+
+3. Chart Creation:
+   - Given the PSF is running,
+     When the user combines units, progress ratings, and observation notes using the `zip` function,
+     Then a combined array is created.
+   - Given the PSF is running,
+     When the user formats chart data using the `reduce` function,
+     Then a text-based table is created.
+   - Given the PSF is running,
+     When the user displays the formatted chart,
+     Then the progress chart is shown.
+
+4. Periodic Updates:
+   - Given the PSF is running,
+     When the user prompts for a new progress rating and note using the `getInput` function,
+     Then the user can enter the new values.
+   - Given the PSF is running,
+     When the user appends the new rating to ratings using the `concat` function,
+     Then the new rating is added to the list.
+   - Given the PSF is running,
+     When the user appends the new note to notes using the `concat` function,
+     Then the new note is added to the list.
+
+5. Visual Analysis:
+   - Given the PSF is running,
+     When the user uses the `map` function to convert ratings into a formatted string,
+     Then a string for visualizing progress ratings is created.
+   - Given the PSF is running,
+     When the user displays the string,
+     Then progress ratings are visualized.
+
+6. Adaptation:
+   - Given the PSF is running,
+     When the user analyzes ratings using the `filter`, `map`, and `reduce` functions,
+     Then strategies are modified using a functional approach to drive improvement.
+
+These scenarios capture the different interactions and functionalities described in the code. Each scenario follows the "Given-When-Then" format, where the initial context is provided (Given), an action is taken (When), and the expected outcome is stated (Then).
+
 ## Contributing
 
 Contributions are welcome! Feel free to submit issues and pull requests.
