@@ -1,37 +1,31 @@
-import { createSlice, configureStore } from '@reduxjs/toolkit'
+import { configureStore, createSlice } from '@reduxjs/toolkit';
 
-const counterSlice = createSlice({
-  name: 'counter',
-  initialState: {
-    value: 0
-  },
+// Define a slice with initial state and reducer logic
+const inputSlice = createSlice({
+  name: 'input',
+  initialState: '',
   reducers: {
-    incremented: state => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      state.value += 1
+    setInput: (state, action) => {
+      return action.payload;
     },
-    decremented: state => {
-      state.value -= 1
-    }
-  }
-})
+  },
+});
 
-export const { incremented, decremented } = counterSlice.actions
+// Extract the action creator
+export const { setInput } = inputSlice.actions;
 
+// Create the Redux store
 const store = configureStore({
-  reducer: counterSlice.reducer
-})
+  reducer: {
+    input: inputSlice.reducer,
+  },
+});
 
-// Can still subscribe to the store
-store.subscribe(() => console.log(store.getState()))
+// Console log a question
+console.log("What's your input?");
 
-// Still pass action objects to `dispatch`, but they're created for us
-store.dispatch(incremented())
-// {value: 1}
-store.dispatch(incremented())
-// {value: 2}
-store.dispatch(decremented())
-// {value: 1}
+// Listen for user input
+process.stdin.on('data', (input) => {
+  // Dispatch the input to the store
+  store.dispatch(setInput(input.toString().trim()));
+});
