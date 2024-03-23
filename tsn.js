@@ -256,27 +256,43 @@ describe("Initial Data Collection User Story", () => {
     const ratingInput = "3"; // Simulated user input for rating
     const priorityInput = "8"; // Simulated user input for priority
 
-    // Simulate user input for rating and priority
-    simulateUserInput(ratingInput, () => {
-      simulateUserInput(priorityInput, () => {
-        // ...
+    // // Simulate user input for rating and priority
+    // simulateUserInput(ratingInput, () => {
+    //   simulateUserInput(priorityInput, () => {
 
-        const expectedProgressData = [{ rating: 3, priority: 8 }];
-        const actualProgressData = store.state.progressData.map(data => ({
-          rating: data.rating,
-          priority: data.priority
-        }));
+    //     const expectedProgressData = [{ rating: 3, priority: 8 }];
+    //     const actualProgressData = store.state.progressData.map(data => ({
+    //       rating: data.rating,
+    //       priority: data.priority
+    //     }));
 
-        // Use _.isEqual for deep object comparison
-        if (_.isEqual(actualProgressData, expectedProgressData)) {
-          console.log("✓ Test passed");
-        } else {
-          console.error(`✗ Test failed. Expected ${JSON.stringify(expectedProgressData)}, but got ${JSON.stringify(actualProgressData)}`);
-        }
+    //     // Use _.isEqual for deep object comparison
+    //     if (_.isEqual(actualProgressData, expectedProgressData)) {
+    //       console.log("✓ Test passed");
+    //     } else {
+    //       console.error(`✗ Test failed. Expected ${JSON.stringify(expectedProgressData)}, but got ${JSON.stringify(actualProgressData)}`);
+    //     }
 
-        console.log("User input simulation complete.");
-      });
-    });
+    //     console.log("User input simulation complete.");
+    //   });
+    // });
+
+// Simulate user input for rating and priority
+console.log("Please provide a progress rating (between -5 and 5):");
+simulateUserInput("", ratingInput => {
+  console.log("Please provide a priority value (positive or negative):");
+  simulateUserInput("", priorityInput => {
+    const rating = parseInt(ratingInput); // Convert input to integer
+    const priority = parseInt(priorityInput); // Convert input to integer
+
+    // Update progress data with user input
+    updateProgressData({ rating, priority });
+
+    console.log("Progress rating and priority have been recorded.");
+  });
+});
+
+
   });
 });
 

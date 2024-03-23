@@ -330,7 +330,7 @@ function runTests() {
   updateProgressData({ rating: testRating, priority: testPriority });
   console.log('Progress Data:', store.state.progressData);
 
-  // ... Add more tests for other functions if needed
+  // ... Add more tests for other functions as needed
 }
 
 // Run tests when the program starts
