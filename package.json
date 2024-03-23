@@ -1,0 +1,24 @@
+{
+  "name": "psf",
+  "version": "0.0.1",
+  "description": "Personnel subconscious Operating System (oS) reFactoring",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "na"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seandinwiddie/psf.git"
+  },
+  "keywords": [
+    "functional-programming",
+    "redux.js"
+  ],
+  "author": "Sean Paul Payne Dinwiddie",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/seandinwiddie/psf/issues"
+  },
+  "homepage": "https://github.com/seandinwiddie/psf#readme"
+}
